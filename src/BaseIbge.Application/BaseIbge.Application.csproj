@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <ItemGroup>
+    <ProjectReference Include="..\BaseIbge.Domain\BaseIbge.Domain.csproj" />
+    <ProjectReference Include="..\BaseIbge.Infrastructure\BaseIbge.Infrastructure.csproj" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
 </Project>
