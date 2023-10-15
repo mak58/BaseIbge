@@ -1,10 +1,9 @@
-using BaseIbge.Domain.Models;
+using BaseIbge.Domain.Interfaces;
 using BaseIbge.Infrastructure.Data;
-using static BaseIbge.Infrastructure.Repositories.RepositoryBase;
 
 namespace BaseIbge.Infrastructure.Repositories;
 
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : Entity
+public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         private readonly AppDbContext _Context;
 

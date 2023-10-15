@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Application", "Bas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Domain", "BaseIbge.Domain\BaseIbge.Domain.csproj", "{2A797DB6-A94C-4D51-9A8E-092EBB7CEB11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Domain.Core", "BaseIbge.Domain.Core\BaseIbge.Domain.Core.csproj", "{FC6DB3F8-4888-4971-904D-15D8947D84D9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Infrastructure", "BaseIbge.Infrastructure\BaseIbge.Infrastructure.csproj", "{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}"
 EndProject
 Global
@@ -34,10 +32,6 @@ Global
 		{2A797DB6-A94C-4D51-9A8E-092EBB7CEB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A797DB6-A94C-4D51-9A8E-092EBB7CEB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A797DB6-A94C-4D51-9A8E-092EBB7CEB11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC6DB3F8-4888-4971-904D-15D8947D84D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC6DB3F8-4888-4971-904D-15D8947D84D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC6DB3F8-4888-4971-904D-15D8947D84D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC6DB3F8-4888-4971-904D-15D8947D84D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
