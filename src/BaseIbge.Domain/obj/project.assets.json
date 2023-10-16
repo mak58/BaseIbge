@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "Flunt/2.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Flunt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flunt.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore/7.0.12": {
         "type": "package",
         "dependencies": {
@@ -237,6 +246,19 @@
     }
   },
   "libraries": {
+    "Flunt/2.0.5": {
+      "sha512": "CMgq8FUYjkHzyZT3PhkUwZyy79mudON+EL4b0SAT7BfIOJ2CNypwnbdA0cPHAM2CYQfO2L8ubNJCiBHQOIv2pA==",
+      "type": "package",
+      "path": "flunt/2.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "flunt.2.0.5.nupkg.sha512",
+        "flunt.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Flunt.dll"
+      ]
+    },
     "Microsoft.EntityFrameworkCore/7.0.12": {
       "sha512": "HRge/bJ5SKMNeqybC4NnRwWZn69QBjVVoVmwhmJ8xgQ50Ye+jTOOf2mef/y4Lrq1HUeMg8cu+3JeFdnp+Y8skA==",
       "type": "package",
@@ -591,6 +613,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Flunt >= 2.0.5",
       "Microsoft.EntityFrameworkCore >= 7.0.12",
       "Microsoft.EntityFrameworkCore.Relational >= 7.0.12"
     ]
@@ -632,6 +655,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Flunt": {
+            "target": "Package",
+            "version": "[2.0.5, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.12, )"

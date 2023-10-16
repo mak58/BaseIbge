@@ -44,6 +44,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -98,6 +104,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Flunt": {
+              "target": "Package",
+              "version": "[2.0.5, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.12, )"
@@ -176,6 +186,10 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [

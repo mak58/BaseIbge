@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7UPmIWm/JV6l1mWZckT0OYzH1/GlTR8/6ubJqxHCBBwjPhQgyrPC1p3ECXPnS9/uQMql8XPipOAilfJ8B4oP/g==",
+  "dgSpecHash": "SMc+sfi4OjeBkikPYldVwDXYvwm85ebK5pdnl11Cn/Cb4FzOftb6kWp8RiAf4F2XIgyGM6KXN0mIgxxDsNkTzA==",
   "success": true,
   "projectFilePath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Domain\\BaseIbge.Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\marcio.koehler\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.12\\microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",

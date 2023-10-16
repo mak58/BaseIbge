@@ -5,33 +5,33 @@ namespace BaseIbge.Infrastructure.Repositories;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        private readonly AppDbContext _Context;
+        private readonly AppDbContext _context;
 
-        public RepositoryBase(AppDbContext context) => context = _Context;            
+        public RepositoryBase(AppDbContext context) => context = _context;            
         
 
         async Task<T> IRepositoryBase<T>.Get(int Id)
         {
-            return await _Context.Set<T>().FindAsync();
+            return await _context.Set<T>().FindAsync();
         }   
 
         void IRepositoryBase<T>.Insert(T entity)
         {
-            _Context.Set<T>().Add(entity);
+            _context.Set<T>().Add(entity);
         }
 
         void IRepositoryBase<T>.Update(T entity)
         {
-            _Context.Set<T>().Update(entity);
+            _context.Set<T>().Update(entity);
         }
 
         void IRepositoryBase<T>.Remove(T entity)
         {
-            _Context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
         }
 
         async Task<bool> IRepositoryBase<T>.SaveChangesAsync()
         {
-            return await _Context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
