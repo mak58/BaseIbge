@@ -1,13 +1,19 @@
 using BaseIbge.Domain.Interfaces;
 using BaseIbge.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaseIbge.Infrastructure.Repositories;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         private readonly AppDbContext _context;
+        private readonly DbSet<T> _DbSet;
 
-        public RepositoryBase(AppDbContext context) => context = _context;            
+        public RepositoryBase(AppDbContext context)
+        {
+            _DbSet = _context.Set<T>();
+            context = _context;            
+        }
         
 
         async Task<T> IRepositoryBase<T>.Get(int Id)
@@ -17,7 +23,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 
         void IRepositoryBase<T>.Insert(T entity)
         {
-            _context.Set<T>().Add(entity);
+            _DbSet.Add(entity);            
         }
 
         void IRepositoryBase<T>.Update(T entity)

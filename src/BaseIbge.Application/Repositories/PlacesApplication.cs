@@ -1,60 +1,68 @@
-using AutoMapper;
-using BaseIbge.Application.Dto;
 using BaseIbge.Application.Interfaces;
-using BaseIbge.Domain.Interfaces;
+using BaseIbge.Domain.ViewModels;
+using BaseIbge.Infrastructure.Data;
+using BasePlace.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BaseIbge.Application;
 
 public class PlacesApplication : IPlacesApplication
 {
-    private readonly IPlaceRepository _placeRepository;
-    private readonly IRepositoryBase<PlaceDto> _repositoryBase;
-    private readonly IMapper _mapper;
+ 
+    private readonly AppDbContext _context;
+
+    public PlacesApplication(AppDbContext context)
+        => _context = context;
 
 
-    public PlacesApplication(
-        IPlaceRepository placeRepository,
-        IRepositoryBase<PlaceDto> repositoryBase,
-        IMapper mapper)
+    public async Task<Place> AddPlace(Place place)
     {
-        _placeRepository = placeRepository;
-        _repositoryBase = repositoryBase;
-        _mapper = mapper;
+        // _placeRepository.PostAsync(place);
+        _context.Places.Add(place);
+        await _context.SaveChangesAsync();
 
+        return place;
     }
 
-    public void AddPlace(PlaceDto place)
+    public async Task<List<Place>> GetByCityAsync(string city)
     {
-        _repositoryBase.Insert(place);
+        var place = _context.Places.Where(x => x.City == city).ToList();
+        return place;
     }
 
-    public Task<PlaceDto> GetByCityAsync(string city)
+    public Place GetById(int id)
     {
-        throw new NotImplementedException();
+        var place =  _context.Places.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+        return place;
     }
 
-    public Task<PlaceDto> GetByIdAsync(int Id)
+    public async Task<List<Place>> GetByState(string state)
     {
-        throw new NotImplementedException();
+        var place = _context.Places.Where(x => x.State == state).ToList();
+        return place;
     }
 
-    public Task<PlaceDto> GetByStateAsync(int state)
+    public bool RemovePlace(int id)
     {
-        throw new NotImplementedException();
+        var place = _context.Places.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+
+        if(place is null) return false;
+
+        _context.Places.Remove(place);
+        _context.SaveChanges();
+        return true;
     }
 
-    public void RemovePlace(int id)
+    public async Task<Place> UpdatePlace(PlaceRequest placeRequest, int id)
     {
-        var entity = _repositoryBase.Get(id);
-        
+        var place = GetById(id);
+        Place newPlace = new(placeRequest.Id, placeRequest.State, placeRequest.City);
 
-        if (entity is not null)
-            _repositoryBase.Remove(_mapper.Map<PlaceDto>(entity));
+        if(place is not null)
+        {            
+            _context.Places.Update(newPlace);
+            _context.SaveChanges();
+        }   
+        return newPlace;     
     }
-
-    public void UpdatePlace(int id, PlaceDto place)
-    {
-        throw new NotImplementedException();
-    }
-
 }

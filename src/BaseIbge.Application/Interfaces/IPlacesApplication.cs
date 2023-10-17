@@ -1,14 +1,15 @@
-using BaseIbge.Application.Dto;
+using BaseIbge.Domain.ViewModels;
+using BasePlace.Domain.Models;
 
 namespace BaseIbge.Application.Interfaces;
 
 public interface IPlacesApplication
 {
-    Task<PlaceDto> GetByIdAsync(int Id);
-    Task<PlaceDto> GetByCityAsync(string city);
-    Task<PlaceDto> GetByStateAsync(int state);
+    Place GetById(int id);
+    Task<List<Place>> GetByCityAsync(string city);
+    Task<List<Place>> GetByState(string state);
 
-    void AddPlace(PlaceDto place);
-    void UpdatePlace(int id, PlaceDto place);
-    void RemovePlace(int id);    
+    Task<Place> AddPlace(Place place);
+    Task<Place> UpdatePlace(PlaceRequest place, int id);
+    bool RemovePlace(int id);    
 }

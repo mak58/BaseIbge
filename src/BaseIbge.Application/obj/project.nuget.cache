@@ -1,13 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "z+h5UgVaSX6NewvCk10+CLEe6zyUtzK/P53L7YdxLnedh3u5JoTu30t1OlhMKAHWih8ZeIPzitOg35Z/6n+sHw==",
+  "dgSpecHash": "fPp63e3H3Y+mXCfK5SIgC9a0G+WFQRTr2HAM4dzShIjJ9Rsb7G4Gl8wk1Dp+XoZ3ZPeWYl4OTSlPO8JEkiUfbg==",
   "success": true,
   "projectFilePath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Application\\BaseIbge.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\marcio.koehler\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.12\\microsoft.data.sqlite.core.7.0.12.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
