@@ -17,8 +17,12 @@ public static class ServiceExtensionsInfra
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("Database")));
 
-        services.AddIdentity<IdentityUser, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>();
+        services.AddIdentity<IdentityUser, IdentityRole>(options => 
+        {
+            options.Password.RequireDigit = false;
+            options.Password.RequireUppercase = false;
+        })
+        .AddEntityFrameworkStores<AppDbContext>();
 
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));        
         services.AddScoped<IPlaceRepository, PlaceRepository>();

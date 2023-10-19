@@ -3,6 +3,9 @@
     <ProjectReference Include="..\BaseIbge.Domain\BaseIbge.Domain.csproj" />
     <ProjectReference Include="..\BaseIbge.Infrastructure\BaseIbge.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.12" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
