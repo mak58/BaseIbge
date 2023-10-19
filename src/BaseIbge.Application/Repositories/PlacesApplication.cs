@@ -1,4 +1,5 @@
 using BaseIbge.Application.Interfaces;
+using BaseIbge.Domain.Interfaces;
 using BaseIbge.Domain.ViewModels;
 using BaseIbge.Infrastructure.Data;
 using BasePlace.Domain.Models;
@@ -7,62 +8,77 @@ using Microsoft.EntityFrameworkCore;
 namespace BaseIbge.Application;
 
 public class PlacesApplication : IPlacesApplication
-{
- 
+{ 
     private readonly AppDbContext _context;
+        private readonly IPlaceRepository _placeRepository;
 
-    public PlacesApplication(AppDbContext context)
-        => _context = context;
+    public PlacesApplication(AppDbContext context, IPlaceRepository repo)
+    {        
+        _context = context;
+        _placeRepository = repo;
+    }
+
+    public IPlaceRepository Repo { get; }
 
 
-    public async Task<Place> AddPlace(Place place)
+    public async Task<Place> AddPlaceAsync(PlaceRequest placeRequest)
     {
-        // _placeRepository.PostAsync(place);
-        _context.Places.Add(place);
-        await _context.SaveChangesAsync();
+        var place = placeRequest.MapTo();
+        if (!placeRequest.IsValid) return null;
 
+        await _placeRepository.PostAsync(place);
+        
         return place;
     }
+
+    public async Task<List<Place>> GetAsync()
+    {
+        var places = await _placeRepository.GetPlaceAsync();
+        return places;
+    }
+
 
     public async Task<List<Place>> GetByCityAsync(string city)
     {
-        var place = _context.Places.Where(x => x.City == city).ToList();
+        var place = await _placeRepository.GetPlaceByCity(city);
         return place;
     }
 
-    public Place GetById(int id)
+    public async Task<Place> GetByIdAsync(int id)
     {
-        var place =  _context.Places.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+        var place = await _placeRepository.GetPlaceById(id);
         return place;
     }
 
-    public async Task<List<Place>> GetByState(string state)
+    public async Task<List<Place>> GetByStateAsync(string state)
     {
-        var place = _context.Places.Where(x => x.State == state).ToList();
+        var place = await _placeRepository.GetPlaceByState(state);
         return place;
     }
 
-    public bool RemovePlace(int id)
+    public async Task<Place> UpdatePlaceAsync(PlaceRequest placeRequest, int id)
+    {
+        var place = await _placeRepository.GetPlaceById(id);
+        if (place is null) return null;
+
+        placeRequest.MapTo();
+        if (!placeRequest.IsValid) 
+               return null;
+        
+        Place newPlace = new(placeRequest.Id, placeRequest.City, placeRequest.State);
+
+        _placeRepository.PutAsync(newPlace);
+ 
+        return newPlace;     
+    }
+
+        public bool RemovePlace(int id)
     {
         var place = _context.Places.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
 
         if(place is null) return false;
 
-        _context.Places.Remove(place);
-        _context.SaveChanges();
-        return true;
-    }
-
-    public async Task<Place> UpdatePlace(PlaceRequest placeRequest, int id)
-    {
-        var place = GetById(id);
-        Place newPlace = new(placeRequest.Id, placeRequest.State, placeRequest.City);
-
-        if(place is not null)
-        {            
-            _context.Places.Update(newPlace);
-            _context.SaveChanges();
-        }   
-        return newPlace;     
+        return _placeRepository.Remove(place).Result;
+        
     }
 }

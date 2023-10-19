@@ -479,3 +479,4 @@ baseIbge.db
 baseIbge.db-shm
 baseIbge.db-wal
 .vscode/
+Migrations/

@@ -1,6 +1,8 @@
 using BaseIbge.Application.Interfaces;
+using BaseIbge.Domain.Interfaces;
 using BaseIbge.Domain.ViewModels;
 using BaseIbge.Infrastructure.Data;
+using BasePlace.Domain.Models;
 
 namespace BaseIbge.Api.Endpoints;
 
@@ -10,11 +12,11 @@ public static class IbgeCityEndpoint
    {
       var group = endpoint.MapGroup("/place/");
 
-      group.MapGet("", (AppDbContext context) =>
+      group.MapGet("", (IPlacesApplication placesApplication) =>
       {
-         var place = context.Places.ToList();
+         var place = placesApplication.GetAsync();
 
-         return Results.Ok(place);
+         return Results.Ok(place.Result);
       })
       .WithDisplayName("GetAll")      
       .WithTags("Places");
@@ -22,7 +24,7 @@ public static class IbgeCityEndpoint
 
       group.MapGet("{id}", async (IPlacesApplication placesApplication, int id) => 
       {
-         return  placesApplication.GetById(id);
+         return  placesApplication.GetByIdAsync(id).Result;
       })
       .WithDisplayName("GetById")
       .WithTags("Places");
@@ -38,34 +40,26 @@ public static class IbgeCityEndpoint
 
       endpoint.MapGet("placeByState", (IPlacesApplication placesApplication, string state) => 
       {
-         return placesApplication.GetByState(state);
+         return placesApplication.GetByStateAsync(state);
       })
       .WithDisplayName("GetByState")
       .WithTags("Places");
 
 
-      group.MapPost("", async (IPlacesApplication placesApplication, PlaceRequest placeRequest) => 
-      {
-         var place = placeRequest.MapTo();
-         if (!placeRequest.IsValid) return Results.BadRequest(placeRequest.Notifications);
+      group.MapPost("",  (IPlacesApplication placesApplication, PlaceRequest placeRequest) => 
+      {      
+         var place = placesApplication.AddPlaceAsync(placeRequest);
 
-         await placesApplication.AddPlace(place);
-
-         return Results.Ok(place);         
+         return place is not null ? Results.Ok(place.Result) : Results.BadRequest(placeRequest.Notifications);
       })
       .WithDisplayName("PostPlace")
       .WithTags("Places");
 
       group.MapPut("{id}", async (IPlacesApplication placesApplication, PlaceRequest placeRequest, int id) => 
       {         
-         var request = placeRequest.MapTo();
+         var place = await placesApplication.UpdatePlaceAsync(placeRequest, id);
 
-            if (!placeRequest.IsValid) 
-               return Results.BadRequest(placeRequest.Notifications);
-
-         await placesApplication.UpdatePlace(placeRequest, id);
-
-         return Results.Ok(placeRequest);
+         return Results.Ok(placeRequest.Id);
       })
       .WithDisplayName("PutPlace")
       .WithTags("Places");

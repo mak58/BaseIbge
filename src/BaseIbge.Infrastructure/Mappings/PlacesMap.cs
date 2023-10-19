@@ -13,7 +13,18 @@ public class PlacesMap : IEntityTypeConfiguration<Place>
     {
         builder.HasKey(key => key.Id);
 
-        builder.ToTable("Places");        
+        builder.ToTable("Places");
+
+        builder.Ignore("Notification");
+
+        builder.Property(x => x.Id)
+            .HasMaxLength(7);        
+        
+        builder.Property(x => x.State)
+            .HasMaxLength(2);
+        
+        builder.Property(x => x.City)
+            .HasMaxLength(80);
     }
     
 }

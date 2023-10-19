@@ -1,6 +1,7 @@
 using BaseIbge.Domain.Interfaces;
 using BaseIbge.Infrastructure.Data;
 using BaseIbge.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,9 @@ public static class ServiceExtensionsInfra
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("Database")));
+
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>();
 
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));        
         services.AddScoped<IPlaceRepository, PlaceRepository>();

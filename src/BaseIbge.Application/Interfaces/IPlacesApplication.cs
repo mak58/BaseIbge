@@ -5,11 +5,12 @@ namespace BaseIbge.Application.Interfaces;
 
 public interface IPlacesApplication
 {
-    Place GetById(int id);
+    Task<List<Place>> GetAsync();
+    Task<Place> GetByIdAsync(int id);
     Task<List<Place>> GetByCityAsync(string city);
-    Task<List<Place>> GetByState(string state);
+    Task<List<Place>> GetByStateAsync(string state);
 
-    Task<Place> AddPlace(Place place);
-    Task<Place> UpdatePlace(PlaceRequest place, int id);
+    Task<Place> AddPlaceAsync(PlaceRequest placeRequest);
+    Task<Place> UpdatePlaceAsync(PlaceRequest place, int id);
     bool RemovePlace(int id);    
 }

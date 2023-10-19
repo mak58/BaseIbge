@@ -4,14 +4,14 @@ namespace BaseIbge.Domain.Interfaces;
 
 public interface IPlaceRepository
 {
-    Task<Place> GetPlaceByCity(string city);
-    Task<Place> GetPlaceByState(string city);
+    Task<List<Place>> GetPlaceByCity(string city);
+    Task<List<Place>> GetPlaceByState(string state);
     Task<Place> GetPlaceById(int id);
-    Task<Place> GetPlaceAsync();
+    Task<List<Place>> GetPlaceAsync();
     Task<Place> PostAsync(Place place);
-    Task<Place> PutAsync(int id, Place place);
-    Task<bool> Remove(int id);
-    Task<bool> SaveChangesAsync();
+    Task<Place> PutAsync(Place place);
+    Task<bool> Remove(Place place);
+    bool SaveChanges();
 
 
 
