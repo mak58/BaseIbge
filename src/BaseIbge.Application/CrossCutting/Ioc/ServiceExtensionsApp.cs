@@ -11,6 +11,7 @@ public static class ServiceExtensionsApp
     {                        
         services.AddScoped<IPlacesApplication, PlacesApplication>();
         services.AddScoped<IUserApplication, UserApplication>();
+        services.AddScoped<ILoginApplication, LoginApplication>();
 
         return services;
     }

@@ -10,7 +10,7 @@ public interface IPlaceRepository
     Task<List<Place>> GetPlaceAsync();
     Task<Place> PostAsync(Place place);
     Task<Place> PutAsync(Place place);
-    Task<bool> Remove(Place place);
+    Task<bool> Remove(int id);
     bool SaveChanges();
 
 

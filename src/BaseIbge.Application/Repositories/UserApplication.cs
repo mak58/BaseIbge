@@ -14,8 +14,11 @@ public class UserApplication : IUserApplication
     }
 
     public async Task<UserIdentity> AddUserAsync(UserRequest userRequest)
-    {
-        var user = new IdentityUser {UserName = userRequest.Email, Email = userRequest.Email };        
+    {    
+        var place = userRequest.MapTo();
+        if (!place.IsValid) return null;
+
+        var user = new IdentityUser {UserName = userRequest.Email, Email = userRequest.Email };                    
 
         var userAdded = new IdentityUser
         {
@@ -23,7 +26,7 @@ public class UserApplication : IUserApplication
             Email = user.Email
         };
         
-        var result =  await _userManager.CreateAsync(user, userRequest.Email);                        
+        var result =  await _userManager.CreateAsync(user, userRequest.Password);                        
 
         return new UserIdentity
         {
@@ -59,7 +62,6 @@ public class UserApplication : IUserApplication
         if (user is null) return false;
 
         await _userManager.DeleteAsync(user);
-
         return true;
     }
 }

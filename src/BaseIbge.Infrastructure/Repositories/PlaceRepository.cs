@@ -53,8 +53,12 @@ public class PlaceRepository : IPlaceRepository
         return place;
     }
 
-    public async Task<bool> Remove(Place place)
+    public async Task<bool> Remove(int id)
     {
+        var place = _context.Places.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+
+        if(place is null) return false;
+
         _context.Remove(place);
         return _context.SaveChanges() > 0;
     }

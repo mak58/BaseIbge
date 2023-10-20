@@ -1,6 +1,6 @@
 using BaseIbge.Application.Dto;
 using BaseIbge.Application.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BaseIbge.Api.Endpoints;
 
@@ -25,7 +25,7 @@ public static class UserEndpoint
         .WithTags("Users");
 
         group.MapPost("", async (UserRequest userRequest, IUserApplication user) => 
-        {            
+        {                  
             var newUser = await user.AddUserAsync(userRequest);
             
             return newUser.Result.Succeeded ? Results.Created($"user/", newUser.User.Id) 
@@ -36,7 +36,7 @@ public static class UserEndpoint
 
         group.MapDelete("{id}", (IUserApplication user, Guid id) => {
             user.RemoveUserAsync(id);
-            
+
             return Results.Ok();
         })
         .WithName("DeleteUser")

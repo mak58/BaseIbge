@@ -1,7 +1,3 @@
-
-using BaseIbge.Application;
-using BaseIbge.Application.Interfaces;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddServicesInfra(builder.Configuration);
@@ -14,5 +10,6 @@ app.UseSwaggerUI();
 
 app.MapIbgeCityEndpoint();
 app.MapUserEndpoint();
+app.MapTokenEndpoint();
 
 app.Run();

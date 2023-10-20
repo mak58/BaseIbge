@@ -8,19 +8,22 @@ using Microsoft.EntityFrameworkCore;
 namespace BaseIbge.Application;
 
 public class PlacesApplication : IPlacesApplication
-{ 
-    private readonly AppDbContext _context;
+{     
+    #region /// DI and Ctor 
         private readonly IPlaceRepository _placeRepository;
 
-    public PlacesApplication(AppDbContext context, IPlaceRepository repo)
-    {        
-        _context = context;
-        _placeRepository = repo;
-    }
+        public PlacesApplication(IPlaceRepository placeRepository)
+            =>  _placeRepository = placeRepository;        
 
-    public IPlaceRepository Repo { get; }
+    #endregion            
 
-
+    /// <summary>
+    /// Methods that calls database context to store, retrieve, fetch, update etc...
+    /// </summary>
+    /// <param name="placeRequest"></param>
+    /// Class that input data from frontEnd
+    /// <returns name="Place"></returns>
+    /// Class Place containning data from places in the database.
     public async Task<Place> AddPlaceAsync(PlaceRequest placeRequest)
     {
         var place = placeRequest.MapTo();
@@ -74,11 +77,6 @@ public class PlacesApplication : IPlacesApplication
 
         public bool RemovePlace(int id)
     {
-        var place = _context.Places.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
-
-        if(place is null) return false;
-
-        return _placeRepository.Remove(place).Result;
-        
+        return _placeRepository.Remove(id).Result;        
     }
 }
