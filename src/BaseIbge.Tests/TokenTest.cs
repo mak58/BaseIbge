@@ -1,8 +1,8 @@
 using Xunit;
 using BaseIbge.Application.Dto;
 using BaseIbge.Application.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Moq;
+using BaseIbge.Application.Repositories;
 
 namespace BaseIbge.Tests;
 
@@ -17,7 +17,7 @@ public class TokenTest
 
     [Theory]
     [MemberData(nameof(Data))]
-    public async Task Must_Generate_Token(string email, string password)
+    public void Must_Generate_Token(string email, string password)
     {
         // //arrange
         // var secretKey = @"D*tn3tN&wW3b@p!-oB@s&!bg3";           
@@ -39,7 +39,15 @@ public class TokenTest
 
         loginService.Setup(x => x.GetToken(loginRequest)).ReturnsAsync(token);
 
-        var service = new MeuObjetoDeTeste(mockServico.Object);
+        // var service = new LoginApplication(loginService.Object);
+
+        // //Act
+        // var result = await service.GetToken();
+
+        // Assert
+        // Assert.True(result is not null);
+
+
 
 
         

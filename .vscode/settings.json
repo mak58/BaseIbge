@@ -1,2 +1,4 @@
 {
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/0254a40d-a59a-4d0c-99d8-94d832fc271f/resourceGroups/BaseIbgeAPimarciok/providers/Microsoft.Web/sites/BaseIbgeAPimarciok",
+    "appService.deploySubpath": "."
 }

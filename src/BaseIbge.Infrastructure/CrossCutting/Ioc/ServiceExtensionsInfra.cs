@@ -18,7 +18,7 @@ public static class ServiceExtensionsInfra
             IConfiguration configuration)
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite(configuration.GetConnectionString("Database")));
+            options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddIdentity<IdentityUser, IdentityRole>(options => 
         {

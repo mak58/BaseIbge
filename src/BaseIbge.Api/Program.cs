@@ -20,6 +20,5 @@ app.MapIbgeCityEndpoint(versionSet);
 app.MapUserEndpoint(versionSet);
 app.MapTokenEndpoint(versionSet);
 
-// app.UseHttpsRedirection();
 
 app.Run();

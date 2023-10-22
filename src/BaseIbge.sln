@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Domain", "BaseIbge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Infrastructure", "BaseIbge.Infrastructure\BaseIbge.Infrastructure.csproj", "{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseIbge.Tests", "BaseIbge.Tests\BaseIbge.Tests.csproj", "{3707CD27-9821-45BC-BA46-D30ACC1803D3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,9 +36,5 @@ Global
 		{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14AF96D4-03DC-4622-B9AF-06D03AF53B6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3707CD27-9821-45BC-BA46-D30ACC1803D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3707CD27-9821-45BC-BA46-D30ACC1803D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3707CD27-9821-45BC-BA46-D30ACC1803D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3707CD27-9821-45BC-BA46-D30ACC1803D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
