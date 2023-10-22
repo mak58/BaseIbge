@@ -29,7 +29,7 @@ public class LoginApplication : ILoginApplication
 
         var key = Encoding.ASCII.GetBytes(_configuration["JwtTokensSettings:SecretKey"]);
 
-        return GenerateToken.CreateToken(user, key);
+        return GenerateToken.CreateToken(user.Email, key);
     }
 
 }

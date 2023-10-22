@@ -475,8 +475,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 bin/
-baseIbge.db
-baseIbge.db-shm
-baseIbge.db-wal
+# baseIbge.db
+# baseIbge.db-shm
+# baseIbge.db-wal
 .vscode/
 Migrations/

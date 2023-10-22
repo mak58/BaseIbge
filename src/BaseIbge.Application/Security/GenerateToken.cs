@@ -9,13 +9,13 @@ namespace BaseIbge.Application.Security;
 
 public static class GenerateToken
 {
-    public static string CreateToken(IdentityUser user, byte[] key)
+    public static string CreateToken(string user, byte[] key)
     {
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Email, user.Email )
+                new Claim(ClaimTypes.Email, user )
             }),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             Audience = "Audience",
