@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tALcEtD/1yd/y6lIJNcOZILo7K11Y8ZL0Eqy4RY5tvAM5moCEovszyUuStIC1JDRAq/i8DOzqOEg1Cu4Jv/pAw==",
+  "dgSpecHash": "+P+cy1doRyic1wCgwL3YUV2sQ00kQciFx3D0kjlEiK1kHQURq3Me7i6VSh0MS2SwJeGu7bRWbs/mPQ8jq2WocQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Application\\BaseIbge.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\marcio.koehler\\.nuget\\packages\\asp.versioning.abstractions\\7.0.0\\asp.versioning.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\marcio.koehler\\.nuget\\packages\\asp.versioning.http\\7.1.0\\asp.versioning.http.7.1.0.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "K7x5ndY75e79S72dT8M85GpJtUBhIYkS1f8Y8CVd2412KszgJUy8bQqvLB2H1rT0UVl3pruKElF0nCidFpMDxw==",
+  "dgSpecHash": "xuKbnUdMYe2ninQwV7NKrLYJFqV3CpghHtf2nwZQIDJMgYREQq5EdIdbzsWGDAv7zD+zxEf4YU8H7BMVm4+7gg==",
   "success": true,
   "projectFilePath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\BaseIbge.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\marcio.koehler\\.nuget\\packages\\asp.versioning.abstractions\\7.0.0\\asp.versioning.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\marcio.koehler\\.nuget\\packages\\asp.versioning.http\\7.1.0\\asp.versioning.http.7.1.0.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\marcio.koehler\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.12\\microsoft.aspnetcore.cryptography.internal.7.0.12.nupkg.sha512",

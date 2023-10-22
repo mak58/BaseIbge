@@ -1,6 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using BaseIbge.Application.Shared;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BaseIbge.Application.Security;
@@ -16,8 +18,9 @@ public static class GenerateToken
                 new Claim(ClaimTypes.Email, user.Email )
             }),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-            Audience = "BaseIbge",
-            Issuer = "Issuer"                     
+            Audience = "Audience",
+            Issuer = "baseIbgeIssuer",
+            Expires = DateTime.UtcNow.AddHours(2)                     
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();

@@ -27,7 +27,7 @@ public class LoginApplication : ILoginApplication
         if(!_userManager.CheckPasswordAsync(user, loginRequest.Password).Result)
             return string.Empty;
 
-        var key = Encoding.ASCII.GetBytes(_configuration["Tokens:Auth"]);
+        var key = Encoding.ASCII.GetBytes(_configuration["JwtTokensSettings:SecretKey"]);
 
         return GenerateToken.CreateToken(user, key);
     }

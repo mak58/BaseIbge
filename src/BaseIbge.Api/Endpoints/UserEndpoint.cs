@@ -1,12 +1,12 @@
+using Asp.Versioning.Builder;
 using BaseIbge.Application.Dto;
 using BaseIbge.Application.Interfaces;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BaseIbge.Api.Endpoints;
 
 public static class UserEndpoint
 {
-    public static void MapUserEndpoint(this IEndpointRouteBuilder endpoint)
+    public static void MapUserEndpoint(this IEndpointRouteBuilder endpoint, ApiVersionSet versionSet)
     {
         var group = endpoint.MapGroup("user");
 
@@ -15,14 +15,21 @@ public static class UserEndpoint
             return await user.GetUsers();
         })
         .WithName("GetUser")
-        .WithTags("Users");
+        .WithTags("Users")
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(1);
+
 
         group.MapGet("{id:guid}", async (IUserApplication user, Guid id) => 
         {
             return user.GetUserById(id).Result;
         })
         .WithName("GetUserById")
-        .WithTags("Users");
+        .WithTags("Users")
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(1)
+        .RequireAuthorization();
+
 
         group.MapPost("", async (UserRequest userRequest, IUserApplication user) => 
         {                  
@@ -32,7 +39,11 @@ public static class UserEndpoint
                 : Results.BadRequest(newUser.Result.Errors);                        
         })
         .WithName("PostUser")
-        .WithTags("Users");
+        .WithTags("Users")
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(1)
+        .AllowAnonymous();
+
 
         group.MapDelete("{id}", (IUserApplication user, Guid id) => {
             user.RemoveUserAsync(id);
@@ -40,6 +51,9 @@ public static class UserEndpoint
             return Results.Ok();
         })
         .WithName("DeleteUser")
-        .WithTags("Users");
+        .WithTags("Users")
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(1)
+        .RequireAuthorization();
     } 
 }

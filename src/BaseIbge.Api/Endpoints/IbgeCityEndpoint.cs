@@ -1,76 +1,98 @@
+using Asp.Versioning.Builder;
 using BaseIbge.Application.Interfaces;
-using BaseIbge.Domain.Interfaces;
 using BaseIbge.Domain.ViewModels;
-using BaseIbge.Infrastructure.Data;
-using BasePlace.Domain.Models;
 
 namespace BaseIbge.Api.Endpoints;
 
 public static class IbgeCityEndpoint
 {
-   public static void MapIbgeCityEndpoint(this IEndpointRouteBuilder endpoint) 
+   public static void MapIbgeCityEndpoint(this IEndpointRouteBuilder endpoint, ApiVersionSet versionSet) 
    {
-      var group = endpoint.MapGroup("/place/");
+      var group = endpoint.MapGroup("place/");
 
       group.MapGet("", (IPlacesApplication placesApplication) =>
       {
          var place = placesApplication.GetAsync();
 
-         return Results.Ok(place.Result);
+         return place is not null ? Results.Ok(place.Result) : Results.BadRequest();
       })
       .WithDisplayName("GetAll")      
-      .WithTags("Places");
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();      
 
 
       group.MapGet("{id}", async (IPlacesApplication placesApplication, int id) => 
-      {
-         return  placesApplication.GetByIdAsync(id).Result;
+      {  
+         var place = placesApplication.GetByIdAsync(id).Result;
+         return place is not null ? Results.Ok(place) : Results.NotFound();
       })
       .WithDisplayName("GetById")
-      .WithTags("Places");
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();
 
 
       endpoint.MapGet("placeByCity", (IPlacesApplication placesApplication,  string city) => 
-      {                  
-         return placesApplication.GetByCityAsync(city);         
+      {  
+         var place = placesApplication.GetByCityAsync(city);                         
+         return place is not null ? Results.Ok(place.Result) : Results.NotFound();
       })
       .WithDisplayName("GetByCity")
-      .WithTags("Places");
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();
 
 
       endpoint.MapGet("placeByState", (IPlacesApplication placesApplication, string state) => 
       {
-         return placesApplication.GetByStateAsync(state);
+         var place = placesApplication.GetByStateAsync(state); 
+         return place is not null ? Results.Ok(place.Result) : Results.NotFound();
       })
       .WithDisplayName("GetByState")
-      .WithTags("Places");
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();;
 
 
-      group.MapPost("",  (IPlacesApplication placesApplication, PlaceRequest placeRequest) => 
+      group.MapPost("", (IPlacesApplication placesApplication, PlaceRequest placeRequest) => 
       {      
          var place = placesApplication.AddPlaceAsync(placeRequest);
 
          return place is not null ? Results.Ok(place.Result) : Results.BadRequest(placeRequest.Notifications);
       })
       .WithDisplayName("PostPlace")
-      .WithTags("Places");
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();;
 
       group.MapPut("{id}", async (IPlacesApplication placesApplication, PlaceRequest placeRequest, int id) => 
       {         
          var place = await placesApplication.UpdatePlaceAsync(placeRequest, id);
 
-         return Results.Ok(placeRequest.Id);
+         return place is not null ? Results.Ok(placeRequest.Id) : Results.BadRequest();
       })
       .WithDisplayName("PutPlace")
-      .WithTags("Places");
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();;
 
       group.MapDelete("{id}", async (IPlacesApplication placesApplication, int id) =>
       {
          var place = placesApplication.RemovePlace(id);
 
-         return Results.Ok(true);
+         return place is true ? Results.Ok(true) : Results.BadRequest();
       })
       .WithDisplayName("DeletePlace")
-      .WithTags("Places");     
+      .WithTags("Places")
+      .WithApiVersionSet(versionSet)
+      .MapToApiVersion(1)
+      .RequireAuthorization();;
    }
 }
