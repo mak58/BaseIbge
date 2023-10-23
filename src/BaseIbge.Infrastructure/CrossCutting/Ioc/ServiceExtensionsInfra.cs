@@ -45,6 +45,33 @@ public static class ServiceExtensionsInfra
             { Title = "Base Ibge API", 
                 Version = "v1" ,
                     Description = "This Api returns the Ibge Id, city name and State from Brazil! \n It's possible input new data, update and remove."});
+            
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization header using the Bearer scheme."
+            });
+
+            // Add a requirement for the Bearer token
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+            
         });
     
         return services;
