@@ -8,14 +8,16 @@ public static class UserEndpoint
 {
     public static void MapUserEndpoint(this IEndpointRouteBuilder endpoint, ApiVersionSet versionSet)
     {
-        var group = endpoint.MapGroup("user");
+        var group = endpoint
+                    .MapGroup("user")
+                    .WithTags("Users")
+                    .RequireAuthorization();
 
         group.MapGet("", async (IUserApplication user) => 
         {
             return await user.GetUsers();
         })
-        .WithName("GetUser")
-        .WithTags("Users")
+        .WithName("GetUser")        
         .WithApiVersionSet(versionSet)
         .MapToApiVersion(1);
 
@@ -27,8 +29,7 @@ public static class UserEndpoint
         .WithName("GetUserById")
         .WithTags("Users")
         .WithApiVersionSet(versionSet)
-        .MapToApiVersion(1)
-        .RequireAuthorization();
+        .MapToApiVersion(1);
 
 
         group.MapPost("", async (UserRequest userRequest, IUserApplication user) => 
@@ -39,7 +40,6 @@ public static class UserEndpoint
                 : Results.BadRequest(newUser.Result.Errors);                        
         })
         .WithName("PostUser")
-        .WithTags("Users")
         .WithApiVersionSet(versionSet)
         .MapToApiVersion(1)
         .AllowAnonymous();
@@ -53,7 +53,6 @@ public static class UserEndpoint
         .WithName("DeleteUser")
         .WithTags("Users")
         .WithApiVersionSet(versionSet)
-        .MapToApiVersion(1)
-        .RequireAuthorization();
+        .MapToApiVersion(1);
     } 
 }

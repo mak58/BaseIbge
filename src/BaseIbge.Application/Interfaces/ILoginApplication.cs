@@ -1,8 +1,8 @@
-using BaseIbge.Application.Dto;
+using BaseIbge.Models.Request;
 
 namespace BaseIbge.Application.Interfaces;
 
 public interface ILoginApplication
 {
-    Task<string> GetToken(LoginRequest loginRequest);
+    Task<string> ValidateUser(LoginRequest loginRequest);
 }

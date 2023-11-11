@@ -1989,11 +1989,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\BaseIbge.Infrastructure.csproj",
+      "projectUniqueName": "c:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\BaseIbge.Infrastructure.csproj",
       "projectName": "BaseIbge.Infrastructure",
-      "projectPath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\BaseIbge.Infrastructure.csproj",
+      "projectPath": "c:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\BaseIbge.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\marcio.koehler\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\obj\\",
+      "outputPath": "c:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marcio.koehler\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -8,7 +8,12 @@ public static class IbgeCityEndpoint
 {
    public static void MapIbgeCityEndpoint(this IEndpointRouteBuilder endpoint, ApiVersionSet versionSet) 
    {
-      var group = endpoint.MapGroup("place/");
+      var group = endpoint
+                  .MapGroup("place/")
+                  .WithTags("Places")
+                  .WithApiVersionSet(versionSet)
+                  .MapToApiVersion(1)
+                  .RequireAuthorization();
 
       group.MapGet("", (IPlacesApplication placesApplication) =>
       {
@@ -16,11 +21,7 @@ public static class IbgeCityEndpoint
 
          return place is not null ? Results.Ok(place.Result) : Results.BadRequest();
       })
-      .WithDisplayName("GetAll")      
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();      
+      .WithDisplayName("GetAll");             
 
 
       group.MapGet("{id}", async (IPlacesApplication placesApplication, int id) => 
@@ -28,11 +29,7 @@ public static class IbgeCityEndpoint
          var place = placesApplication.GetByIdAsync(id).Result;
          return place is not null ? Results.Ok(place) : Results.NotFound();
       })
-      .WithDisplayName("GetById")
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();
+      .WithDisplayName("GetById");
 
 
       endpoint.MapGet("placeByCity", (IPlacesApplication placesApplication,  string city) => 
@@ -41,10 +38,7 @@ public static class IbgeCityEndpoint
          return place is not null ? Results.Ok(place.Result) : Results.NotFound();
       })
       .WithDisplayName("GetByCity")
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();
+      .WithTags("Places");
 
 
       endpoint.MapGet("placeByState", (IPlacesApplication placesApplication, string state) => 
@@ -53,23 +47,16 @@ public static class IbgeCityEndpoint
          return place is not null ? Results.Ok(place.Result) : Results.NotFound();
       })
       .WithDisplayName("GetByState")
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();;
+      .WithTags("Places");
 
 
-      group.MapPost("", (IPlacesApplication placesApplication, PlaceRequest placeRequest) => 
+      group.MapPost("", async (IPlacesApplication placesApplication, PlaceRequest placeRequest) => 
       {      
-         var place = placesApplication.AddPlaceAsync(placeRequest);
+         var place = await placesApplication.AddPlaceAsync(placeRequest);
 
-         return place is not null ? Results.Ok(place.Result) : Results.BadRequest(placeRequest.Notifications);
+         return place is not null ? Results.Ok(place) : Results.BadRequest(placeRequest.Notifications);
       })
-      .WithDisplayName("PostPlace")
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();;
+      .WithDisplayName("PostPlace");
 
       group.MapPut("{id}", async (IPlacesApplication placesApplication, PlaceRequest placeRequest, int id) => 
       {         
@@ -77,11 +64,7 @@ public static class IbgeCityEndpoint
 
          return place is not null ? Results.Ok(placeRequest.Id) : Results.BadRequest();
       })
-      .WithDisplayName("PutPlace")
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();;
+      .WithDisplayName("PutPlace");
 
       group.MapDelete("{id}", async (IPlacesApplication placesApplication, int id) =>
       {
@@ -89,10 +72,6 @@ public static class IbgeCityEndpoint
 
          return place is true ? Results.Ok(true) : Results.BadRequest();
       })
-      .WithDisplayName("DeletePlace")
-      .WithTags("Places")
-      .WithApiVersionSet(versionSet)
-      .MapToApiVersion(1)
-      .RequireAuthorization();;
+      .WithDisplayName("DeletePlace");
    }
 }

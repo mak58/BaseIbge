@@ -1,5 +1,6 @@
 using BaseIbge.Domain.ViewModels;
 using BasePlace.Domain.Models;
+using Microsoft.Extensions.Logging;
 
 namespace BaseIbge.Application.Interfaces;
 

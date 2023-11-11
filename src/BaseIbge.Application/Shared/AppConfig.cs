@@ -1,22 +1,18 @@
 using Microsoft.Extensions.Configuration;
 
 namespace BaseIbge.Application.Shared;
-
 public static class AppConfig
 {
-    public static IConfiguration  Configuration  { get; private set; }
-
-    static AppConfig()
+    public static string GetConfiguration(string configurationKey)
     {
-        Configuration  = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json")
             .Build();
-    }
-
-    public static string GetValue(string key)
-    {
-        return Configuration[key];
+        
+        var key = configuration[configurationKey]; 
+        return key;                
     }
 }
+
 

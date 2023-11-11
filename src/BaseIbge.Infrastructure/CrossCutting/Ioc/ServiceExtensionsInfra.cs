@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using BaseIbge.Domain.Interface;
 using BaseIbge.Domain.Interfaces;
 using BaseIbge.Infrastructure.Data;
 using BaseIbge.Infrastructure.Repositories;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace BaseIbge.Infrastructure.CrossCutting.Ioc;
@@ -29,6 +29,7 @@ public static class ServiceExtensionsInfra
 
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));        
         services.AddScoped<IPlaceRepository, PlaceRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddApiVersioning(options =>
         {

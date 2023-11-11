@@ -1,4 +1,4 @@
-namespace BaseIbge.Application.Dto;
+namespace BaseIbge.Models.Request;
 
 public class LoginRequest
 {

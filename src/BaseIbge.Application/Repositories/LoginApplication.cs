@@ -1,35 +1,33 @@
 using System.Text;
-using BaseIbge.Application.Dto;
 using BaseIbge.Application.Interfaces;
 using BaseIbge.Application.Security;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+using BaseIbge.Application.Shared;
+using BaseIbge.Domain.Interface;
+using BaseIbge.Models.Request;
 
 namespace BaseIbge.Application.Repositories;
 
 public class LoginApplication : ILoginApplication
-{ 
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IConfiguration _configuration;
+{
+    private readonly IUserRepository _userRepository;
 
-    public LoginApplication(UserManager<IdentityUser> userManager, IConfiguration configuration)
+    public LoginApplication(IUserRepository userRepository)
+        => _userRepository = userRepository;
+
+    public async Task<string> ValidateUser(LoginRequest loginRequest)
     {
-        _userManager = userManager;
-        _configuration = configuration;
+        var user = await _userRepository.GetUserCredentials(loginRequest);
+        
+        if(!user) return string.Empty;
+
+        return GetToken(loginRequest.Email);
     }
 
-    public async Task<string> GetToken(LoginRequest loginRequest)
+    public static string GetToken(string email)
     {
-        var user = _userManager.FindByEmailAsync(loginRequest.Email).Result;
-        if(user is null) 
-            return string.Empty;
+        var key = Encoding.ASCII.GetBytes(AppConfig.GetConfiguration("JwtTokensSettings:SecretKey"));
 
-        if(!_userManager.CheckPasswordAsync(user, loginRequest.Password).Result)
-            return string.Empty;
-
-        var key = Encoding.ASCII.GetBytes(_configuration["JwtTokensSettings:SecretKey"]);
-
-        return GenerateToken.CreateToken(user.Email, key);
+        return GenerateToken.CreateToken(email, key);
     }
 
 }

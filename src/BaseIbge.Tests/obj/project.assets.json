@@ -2642,6 +2642,23 @@
           "build/netcoreapp3.1/xunit.runner.visualstudio.props": {}
         }
       },
+      "BaseIbge.Api/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "BaseIbge.Application": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.12"
+        },
+        "compile": {
+          "bin/placeholder/BaseIbge.Api.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BaseIbge.Api.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "BaseIbge.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -7974,6 +7991,11 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
+    "BaseIbge.Api/1.0.0": {
+      "type": "project",
+      "path": "../BaseIbge.Api/BaseIbge.Api.csproj",
+      "msbuildProject": "../BaseIbge.Api/BaseIbge.Api.csproj"
+    },
     "BaseIbge.Application/1.0.0": {
       "type": "project",
       "path": "../BaseIbge.Application/BaseIbge.Application.csproj",
@@ -7992,6 +8014,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "BaseIbge.Api >= 1.0.0",
       "BaseIbge.Application >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.7.1",
       "Moq >= 4.20.69",
@@ -8025,6 +8048,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Api\\BaseIbge.Api.csproj": {
+              "projectPath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Api\\BaseIbge.Api.csproj"
+            },
             "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Application\\BaseIbge.Application.csproj": {
               "projectPath": "C:\\Users\\marcio.koehler\\Documents\\HelloWorld\\BaseIbge\\src\\BaseIbge.Application\\BaseIbge.Application.csproj"
             }

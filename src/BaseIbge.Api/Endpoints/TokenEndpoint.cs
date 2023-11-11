@@ -1,6 +1,6 @@
 using Asp.Versioning.Builder;
-using BaseIbge.Application.Dto;
 using BaseIbge.Application.Interfaces;
+using BaseIbge.Models.Request;
 
 namespace BaseIbge.Api.Endpoints;
 
@@ -11,7 +11,7 @@ public static class TokenEndpoint
         endpoint.MapPost("login", async (LoginRequest loginRequest, ILoginApplication login) => 
         {
             var getToken = await login
-                                .GetToken(loginRequest);
+                                .ValidateUser(loginRequest);
              
             return  getToken is null 
                     ? Results.BadRequest() 

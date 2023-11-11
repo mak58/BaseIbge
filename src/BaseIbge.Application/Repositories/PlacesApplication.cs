@@ -4,6 +4,7 @@ using BaseIbge.Domain.ViewModels;
 using BaseIbge.Infrastructure.Data;
 using BasePlace.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace BaseIbge.Application;
 
@@ -11,9 +12,14 @@ public class PlacesApplication : IPlacesApplication
 {     
     #region /// DI and Ctor 
         private readonly IPlaceRepository _placeRepository;
+        private readonly ILogger _logger;
 
-        public PlacesApplication(IPlaceRepository placeRepository)
-            =>  _placeRepository = placeRepository;        
+        public PlacesApplication(IPlaceRepository placeRepository, ILogger<PlacesApplication> logger)
+        {
+            _placeRepository = placeRepository;
+            _logger = logger;        
+        }
+              
 
     #endregion            
 
@@ -30,7 +36,8 @@ public class PlacesApplication : IPlacesApplication
         if (!placeRequest.IsValid) return null;
 
         await _placeRepository.PostAsync(place);
-        
+        _logger.LogInformation("Added place succeeded!");
+
         return place;
     }
 
